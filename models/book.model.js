@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 
 const BookSchema = new mongoose.Schema(
   {
-    id: {
-      type: Number,
-      required: true,
-    },
     userName: {
       type: String,
       required: true,
@@ -18,7 +14,7 @@ const BookSchema = new mongoose.Schema(
       type: String,
     },
     accepted: {
-      type: Integer,
+      type: Number,
       required: true,
       default: 0,
     },
