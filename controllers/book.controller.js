@@ -24,7 +24,7 @@ const bookService = async (req, res) => {
 // Function to get all bookings
 const getBookings = async (req, res) => {
   try {
-    const data = await Book.find();
+    const data = await Book.find("-_id");
     res.status(200).send(data);
   } catch (err) {
     res.status(500).send({ message: "something went wrong" });
