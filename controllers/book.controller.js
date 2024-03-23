@@ -9,13 +9,13 @@ const bookService = async (req, res) => {
     res.status(400).send({ message: "all fields are required" });
     return;
   }
-  if (!validator.isAlpha(userName)) {
+  if (!validator.isAlpha(userName.replace(" ", ""))) {
     res
       .status(400)
       .send({ message: "User name should contain only alphabets" });
     return;
   }
-  if (!validator.isAlpha(serviceName)) {
+  if (!validator.isAlpha(serviceName.replace(" ", ""))) {
     res
       .status(400)
       .send({ message: "Service name should contain only alphabets" });
