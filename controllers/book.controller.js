@@ -1,5 +1,6 @@
 const validator = require("validator");
 const Book = require("../models/book.model");
+const { sendMail } = require("./mail.controller");
 
 // Function to book a service
 const bookService = async (req, res) => {
@@ -59,7 +60,16 @@ const updateBooking = async (req, res) => {
       },
       { new: true }
     );
-    res.status(200).send(data);
+
+    if (accepted === "1") {
+      console.log(data);
+      const email = "edgard.habanbou@gmail.com";
+      const subject = "Booking Confirmation";
+      const message = `Your booking for ${data.serviceName} has been confirmed
+      Your service will be on ${serviceTime}`;
+      sendMail(email, subject, message, res);
+    }
+    // res.status(200).send(data);
   } catch (err) {
     res.status(500).send({ message: "something went wrong" });
   }
