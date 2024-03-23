@@ -36,7 +36,7 @@ const bookService = async (req, res) => {
 // Function to get all bookings
 const getBookings = async (req, res) => {
   try {
-    const data = await Book.find().select("-__v");
+    const data = await Book.find({ accepted: 0 }).select("-__v");
     res.status(200).send(data);
   } catch (err) {
     res.status(500).send({ message: "something went wrong" });
@@ -62,14 +62,14 @@ const updateBooking = async (req, res) => {
     );
 
     if (accepted === "1") {
-      console.log(data);
       const email = "edgard.habanbou@gmail.com";
       const subject = "Booking Confirmation";
       const message = `Your booking for ${data.serviceName} has been confirmed
       Your service will be on ${serviceTime}`;
       sendMail(email, subject, message, res);
+    } else {
+      res.status(200).send(data);
     }
-    // res.status(200).send(data);
   } catch (err) {
     res.status(500).send({ message: "something went wrong" });
   }
