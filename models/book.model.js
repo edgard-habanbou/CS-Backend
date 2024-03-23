@@ -18,8 +18,9 @@ const BookSchema = new mongoose.Schema(
       type: String,
     },
     accepted: {
-      type: Boolean,
+      type: Integer,
       required: true,
+      default: 0,
     },
   },
   {
