@@ -62,7 +62,7 @@ const updateBooking = async (req, res) => {
     );
 
     if (accepted === "1") {
-      const email = "edgard.habanbou@gmail.com";
+      const email = "elkhouryadvisory@gmail.com";
       const subject = "Booking Confirmation";
       const message = `Your booking for ${data.serviceName} has been confirmed
       Your service will be on ${serviceTime}`;
